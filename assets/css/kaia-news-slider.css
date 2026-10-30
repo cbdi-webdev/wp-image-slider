@@ -1,0 +1,324 @@
+.kaia-news-slider {
+  width: min(100%, 760px);
+  margin: 22px auto 28px;
+  color: #111827;
+  font-family: "Poppins", sans-serif;
+}
+
+.kaia-news-slider *,
+.kaia-news-slider *::before,
+.kaia-news-slider *::after {
+  box-sizing: border-box;
+}
+
+.kaia-news-slider__stage {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  background: #f6edf2;
+  box-shadow: 0 12px 28px rgba(47, 24, 40, 0.09);
+}
+
+.kaia-news-slider__track {
+  display: flex;
+  width: 100%;
+  transform: translateX(0);
+  transition: transform 0.35s ease;
+  touch-action: pan-y;
+  cursor: grab;
+  user-select: none;
+}
+
+.kaia-news-slider__track.is-dragging {
+  cursor: grabbing;
+  transition: none;
+}
+
+.kaia-news-slider__slide {
+  flex: 0 0 100%;
+  margin: 0;
+  aspect-ratio: 16 / 7.45;
+}
+
+.kaia-news-slider__slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.kaia-news-slider__nav {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  display: inline-grid;
+  width: 40px;
+  height: 58px;
+  place-items: center;
+  border: 0;
+  border-radius: 6px;
+  background: #fff;
+  color: #111827;
+  box-shadow: 0 10px 24px rgba(17, 24, 39, 0.16);
+  cursor: pointer;
+  transform: translateY(-50%);
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.kaia-news-slider__nav:hover,
+.kaia-news-slider__nav:focus-visible {
+  background: #e93a8b;
+  color: #fff;
+  transform: translateY(-50%) scale(1.03);
+}
+
+.kaia-news-slider__nav--prev {
+  left: 18px;
+}
+
+.kaia-news-slider__nav--next {
+  right: 18px;
+}
+
+.kaia-news-slider__nav span,
+.kaia-news-slider__modal-nav span {
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.kaia-news-slider__slideshow {
+  position: absolute;
+  left: 50%;
+  bottom: 18px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 36px;
+  padding: 9px 15px;
+  border: 0;
+  border-radius: 8px;
+  background: rgba(17, 24, 39, 0.78);
+  color: #fff;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1;
+  cursor: pointer;
+  transform: translateX(-50%);
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.kaia-news-slider__slideshow:hover,
+.kaia-news-slider__slideshow:focus-visible {
+  background: rgba(17, 24, 39, 0.92);
+  transform: translateX(-50%) translateY(-1px);
+}
+
+.kaia-news-slider__expand {
+  position: relative;
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  flex: 0 0 auto;
+}
+
+.kaia-news-slider__expand::before,
+.kaia-news-slider__expand::after {
+  content: "";
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-color: currentColor;
+}
+
+.kaia-news-slider__expand::before {
+  top: 0;
+  left: 0;
+  border-top: 2px solid;
+  border-left: 2px solid;
+}
+
+.kaia-news-slider__expand::after {
+  right: 0;
+  bottom: 0;
+  border-right: 2px solid;
+  border-bottom: 2px solid;
+}
+
+.kaia-news-slider__footer {
+  display: grid;
+  grid-template-columns: 70px minmax(0, 1fr) 70px;
+  align-items: center;
+  min-height: 42px;
+  padding-top: 10px;
+}
+
+.kaia-news-slider__counter {
+  margin: 0;
+  color: #6b7280;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.kaia-news-slider__dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-width: 0;
+}
+
+.kaia-news-slider__dots button {
+  width: 9px;
+  height: 9px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: #d7d7d7;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.kaia-news-slider__dots button.is-active {
+  background: var(--kaia-news-slider-active-color, #e93a8b);
+}
+
+.kaia-news-slider__modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 56px 80px;
+  background: rgba(17, 24, 39, 0.88);
+}
+
+.kaia-news-slider__modal.is-open {
+  display: flex;
+}
+
+.kaia-news-slider__modal img {
+  display: block;
+  max-width: min(1100px, 100%);
+  max-height: calc(100vh - 112px);
+  border-radius: 8px;
+  object-fit: contain;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
+}
+
+.kaia-news-slider__modal-close,
+.kaia-news-slider__modal-nav {
+  position: absolute;
+  border: 0;
+  background: #fff;
+  color: #111827;
+  cursor: pointer;
+}
+
+.kaia-news-slider__modal-close {
+  top: 24px;
+  right: 24px;
+  min-height: 38px;
+  padding: 9px 15px;
+  border-radius: 6px;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.kaia-news-slider__modal-nav {
+  top: 50%;
+  display: inline-grid;
+  width: 48px;
+  height: 64px;
+  place-items: center;
+  border-radius: 6px;
+  transform: translateY(-50%);
+}
+
+.kaia-news-slider__modal-nav--prev {
+  left: 24px;
+}
+
+.kaia-news-slider__modal-nav--next {
+  right: 24px;
+}
+
+.kaia-news-slider__modal-close:hover,
+.kaia-news-slider__modal-close:focus-visible,
+.kaia-news-slider__modal-nav:hover,
+.kaia-news-slider__modal-nav:focus-visible {
+  background: #e93a8b;
+  color: #fff;
+}
+
+.kaia-news-slider button:focus-visible {
+  outline: 2px solid rgba(233, 58, 139, 0.55);
+  outline-offset: 3px;
+}
+
+@media (max-width: 760px) {
+  .kaia-news-slider {
+    margin-bottom: 24px;
+  }
+
+  .kaia-news-slider__slide {
+    aspect-ratio: 16 / 10;
+  }
+
+  .kaia-news-slider__nav {
+    width: 38px;
+    height: 54px;
+  }
+
+  .kaia-news-slider__nav--prev {
+    left: 14px;
+  }
+
+  .kaia-news-slider__nav--next {
+    right: 14px;
+  }
+
+  .kaia-news-slider__slideshow {
+    bottom: 16px;
+    min-height: 38px;
+    padding: 9px 14px;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+
+  .kaia-news-slider__footer {
+    grid-template-columns: 58px minmax(0, 1fr) 58px;
+  }
+
+  .kaia-news-slider__dots {
+    gap: 8px;
+  }
+
+  .kaia-news-slider__dots button {
+    width: 9px;
+    height: 9px;
+  }
+
+  .kaia-news-slider__dots button.is-active {
+    width: 9px;
+  }
+
+  .kaia-news-slider__modal {
+    padding: 62px 18px;
+  }
+
+  .kaia-news-slider__modal-nav {
+    width: 40px;
+    height: 54px;
+  }
+}

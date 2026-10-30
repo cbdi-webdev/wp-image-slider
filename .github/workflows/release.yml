@@ -1,0 +1,35 @@
+name: Build and release
+on:
+  push:
+    tags: ['v[0-9]*']
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Lint PHP and test the updater
+        run: |
+          find . -name '*.php' -not -path './.git/*' -print0 | xargs -0 -n1 php -l
+          php tests/updater-test.php
+      - name: Build the ZIP and update metadata
+        env:
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: |
+          if [ "$GITHUB_REF_TYPE" != "tag" ]; then
+            echo 'Select a version tag when running this workflow manually.' >&2
+            exit 1
+          fi
+          php tools/build-release.php dist "$RELEASE_TAG"
+      - name: Publish GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: |
+          if gh release view "$RELEASE_TAG" >/dev/null 2>&1; then
+            gh release upload "$RELEASE_TAG" dist/wp-image-slider.zip dist/wp-image-slider.json --clobber
+          else
+            gh release create "$RELEASE_TAG" dist/wp-image-slider.zip dist/wp-image-slider.json --verify-tag --title "WP Image Slider $RELEASE_TAG" --notes-file CHANGELOG.md
+          fi
