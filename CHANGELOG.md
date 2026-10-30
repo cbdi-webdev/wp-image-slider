@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.3.1 — 2026-10-30
+
+- Apply the shortcode's `active_color` to the fullscreen slideshow button background.
+- Use the same color for arrow and modal button hover/focus states and all button focus outlines.
+
 ## 1.3.0 — 2026-10-30
 
 - Rename the plugin and install directory to WP Image Slider / `wp-image-slider`.

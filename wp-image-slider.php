@@ -2,7 +2,7 @@
 /*
 Plugin Name: WP Image Slider
 Description: A standalone responsive image slider with shortcodes and GitHub release updates.
-Version: 1.3.0
+Version: 1.3.1
 Author: Kaia Homes
 Requires at least: 5.8
 Requires PHP: 7.4
@@ -12,7 +12,7 @@ Text Domain: wp-image-slider
 
 defined('ABSPATH') || exit;
 
-define('WP_IMAGE_SLIDER_VERSION', '1.3.0');
+define('WP_IMAGE_SLIDER_VERSION', '1.3.1');
 define('WP_IMAGE_SLIDER_FILE', __FILE__);
 define('WP_IMAGE_SLIDER_URL', plugin_dir_url(__FILE__));
 

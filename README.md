@@ -1,6 +1,6 @@
 # WP Image Slider
 
-Standalone WordPress plugin, version **1.3.0**. Requires WordPress 5.8+ and PHP 7.4+. No theme, page builder, Composer, npm, or frontend library dependency.
+Standalone WordPress plugin, version **1.3.1**. Requires WordPress 5.8+ and PHP 7.4+. No theme, page builder, Composer, npm, or frontend library dependency.
 
 Repository: https://github.com/cbdi-webdev/wp-image-slider
 
@@ -34,7 +34,7 @@ The ZIP contains one `wp-image-slider/` directory. Keep that name so updates rep
 | `show_buttons` | yes | Show arrow and fullscreen controls. |
 | `show_arrows` | yes | Show previous/next arrows. |
 | `show_slideshow` | yes | Show fullscreen control. |
-| `active_color` | #e93a8b | Active pagination dot color. |
+| `active_color` | #e93a8b | Slideshow button background, active pagination dot, arrow/modal button hover colors, and keyboard focus outlines. |
 
 Without custom sources, the plugin uses featured images from recent published posts. It returns no markup if there are no images. With `ids` or `urls`, it uses only valid supplied images. No site content is bundled.
 
